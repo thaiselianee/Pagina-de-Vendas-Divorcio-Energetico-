@@ -1,7 +1,7 @@
 
 const CONFIG = {
   checkoutUrl: "",
-  revealAtSeconds: 20
+  revealAtSeconds: 5
 };
 
 /* =========================================
