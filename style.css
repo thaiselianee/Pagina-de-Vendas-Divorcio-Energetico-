@@ -99,14 +99,7 @@ h2 i {
   margin: 0 auto;
 }
 
-.postvideo-eyebrow {
-  display: inline-block;
-  color: var(--gold);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .24em;
-  line-height: 1.8;
-}
+
 
 /* =========================================
    2. PRIMEIRA TELA — VSL
@@ -160,6 +153,10 @@ h2 i {
     );
 }
 
+.postvideo-eyebrow{
+  color: var(--gold);
+  font-size: 10px;
+}
 
 /* TRANSIÇÃO SUAVE ENTRE A VSL E A IDENTIFICAÇÃO */
 
@@ -760,66 +757,121 @@ h2 i {
   text-align: center;
 }
 
+
 /* =========================================
-   10. APRESENTAÇÃO DA EXPERIÊNCIA
+   10. CONHEÇA O DIVÓRCIO ENERGÉTICO
+   OFF-WHITE + FOLHAS DOURADAS
 ========================================= */
 
 .postvideo-experience {
   position: relative;
   isolation: isolate;
-  padding: 115px 0 125px;
+  padding: 50px 0 100px;
   overflow: hidden;
   background:
     radial-gradient(
-      ellipse at 50% 0%,
-      rgba(201, 151, 129, .17),
-      transparent 55%
+      ellipse at 50% 12%,
+      rgba(255, 255, 255, .95) 0%,
+      rgba(255, 255, 255, .25) 48%,
+      transparent 75%
     ),
     linear-gradient(
       180deg,
-      #f8f1e9 0%,
-      #eee1d7 100%
+      #fbf8f2 0%,
+      #f8f3ec 55%,
+      #f6efe7 100%
     );
 }
 
+/* FOLHAS DECORATIVAS */
+
+.experience-leaves {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.experience-leaves img {
+  position: absolute;
+  top: 3%;
+  width: clamp(210px, 27vw, 390px);
+  height: 94%;
+  object-fit: contain;
+  opacity: .72;
+  filter: drop-shadow(0 12px 20px rgba(120, 75, 35, .12));
+  pointer-events: none;
+}
+
+.experience-leaves-left {
+  left: -65px;
+  object-position: left center;
+}
+
+.experience-leaves-right {
+  right: -65px;
+  object-position: left center;
+  transform: scaleX(-1);
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.postvideo-experience .postvideo-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* TÍTULO E APRESENTAÇÃO */
+
 .experience-heading {
-  max-width: 760px;
-  margin: 0 auto 55px;
+  position: relative;
+  max-width: 1050px;
+  margin: 0 auto 48px;
   text-align: center;
 }
 
+.postvideo-experience .postvideo-eyebrow {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .32em;
+}
+
 .experience-heading h2 {
-  margin: 17px 0 18px;
-  color: var(--text-dark);
-  font-size: clamp(43px, 5.2vw, 67px);
-  line-height: 1;
+  margin: 19px 0 20px;
+  color: #3a111b;
+  font-family: var(--serif);
+  font-size: clamp(40px, 4vw, 66px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -.025em;
 }
 
 .experience-heading h2 em {
-  color: var(--terracotta);
+  display: block;
+  margin-top: 3px;
+  color: #702b35;
   font-weight: 400;
   text-transform: none;
 }
 
-.postvideo-experience .postvideo-eyebrow {
-  color: #95613f;
-}
-
 .experience-ornament {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 15px;
-  margin: 25px auto;
+  margin: 24px auto 26px;
 }
 
 .experience-ornament span {
-  width: 95px;
+  width: 90px;
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent,
-    #b88a60
+    #b8874e
   );
 }
 
@@ -828,42 +880,54 @@ h2 i {
 }
 
 .experience-ornament i {
-  color: #a36c4e;
+  color: #ae7844;
   font-family: var(--serif);
   font-size: 25px;
   font-style: normal;
 }
 
 .experience-heading p {
-  max-width: 650px;
-  margin: 0 auto 15px;
-  color: #68504c;
-  font-size: 13px;
-  line-height: 1.9;
+  max-width: 850px;
+  margin: 0 auto 13px;
+  color: #594345;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.85;
 }
 
 /* CARD DA EXPERIÊNCIA */
 
 .experience-card {
   position: relative;
-  width: min(850px, 100%);
+  width: min(960px, 100%);
   margin: 0 auto;
-  padding: 30px 42px 25px;
-  border: 1px solid rgba(216, 180, 125, .5);
-  background:
-    radial-gradient(
-      ellipse at 20% 50%,
-      rgba(122, 55, 67, .26),
-      transparent 55%
-    ),
-    linear-gradient(
-      130deg,
-      #411320,
-      #20070f
-    );
-  box-shadow:
-    0 25px 75px rgba(0, 0, 0, .18),
-    inset 0 0 45px rgba(223, 184, 127, .035);
+  padding: 27px 42px 23px;
+  overflow: hidden;
+  border: 1px solid rgba(194, 143, 79, .85);
+  border-radius: 13px;
+  background: linear-gradient( 1deg, rgb(100 37 53), rgba(35, 7, 16, .84) );
+  box-shadow: 0 25px 65px rgba(0, 0, 0, .25), inset 0 0 35px rgba(224, 183, 126, .055);
+  backdrop-filter: blur(3px);
+ 
+}
+
+/* BRILHO DISCRETO DO CARD */
+
+.experience-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 76%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 220, 160, .75),
+    transparent
+  );
+  pointer-events: none;
 }
 
 .experience-card-top,
@@ -872,69 +936,88 @@ h2 i {
   align-items: center;
   justify-content: space-between;
   gap: 15px;
-  color: #c9a16c;
-  font-size: 8px;
+  color: #d5b078;
+  font-family: var(--sans);
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: .17em;
+  letter-spacing: .16em;
 }
 
 .experience-card-top {
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(216, 180, 125, .25);
+  padding-bottom: 19px;
+  border-bottom: 1px solid rgba(216, 180, 125, .27);
 }
+
+/* NÚMERO E TEXTO */
 
 .experience-card-main {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: 190px 1fr;
   align-items: center;
   gap: 35px;
-  padding: 35px 0;
+  padding: 29px 0;
 }
 
 .experience-number {
-  color: rgba(222, 180, 119, .85);
+  color: #e3bd7d;
   font-family: var(--serif);
-  font-size: 145px;
+  font-size: clamp(105px, 12vw, 150px);
   font-weight: 400;
-  line-height: .9;
+  line-height: .85;
   text-align: center;
-  text-shadow: 0 0 40px rgba(213, 164, 104, .12);
+  text-shadow:
+    0 3px 8px rgba(0, 0, 0, .2),
+    0 0 35px rgba(225, 177, 104, .2);
+}
+
+.experience-card-copy {
+  padding-left: 32px;
+  border-left: 1px solid rgba(222, 180, 119, .65);
 }
 
 .experience-card-copy > span {
-  color: #c9a16c;
-  font-size: 8px;
+  color: #d8b77e;
+  font-family: var(--sans);
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: .19em;
+  letter-spacing: .18em;
 }
 
 .experience-card-copy h3 {
-  margin: 13px 0;
-  color: #f4e3d0;
-  font-size: clamp(24px, 3vw, 35px);
-  line-height: 1.15;
+  margin: 13px 0 0;
+  color: #f8ead9;
+  font-family: var(--serif);
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
   text-transform: none;
 }
 
 .experience-card-copy p {
-  margin: 0;
-  color: #d4c0b6;
-  font-size: 12px;
-  line-height: 1.8;
+  display: none;
 }
+
+/* RODAPÉ DO CARD */
 
 .experience-card-footer {
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 20px;
-  border-top: 1px solid rgba(216, 180, 125, .25);
+  padding-top: 19px;
+  border-top: 1px solid rgba(216, 180, 125, .27);
+  color: #e0c18e;
+  font-size: 8px;
+  letter-spacing: .18em;
 }
 
 .experience-card-footer i {
   color: #e0b77b;
-  font-size: 13px;
+  font-family: var(--serif);
+  font-size: 14px;
   font-style: normal;
 }
+
+
+
 
 /* =========================================
    11. COMO FUNCIONA — RITUAL
