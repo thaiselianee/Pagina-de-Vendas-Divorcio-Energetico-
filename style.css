@@ -840,12 +840,12 @@ h2 i {
 }
 
 .experience-heading h2 {
-  margin: 19px 0 20px;
+  margin: 10px 0 20px;
   color: #3a111b;
   font-family: var(--serif);
   font-size: clamp(40px, 4vw, 66px);
   font-weight: 600;
-  line-height: 1.02;
+  line-height: 0.8;
   letter-spacing: -.025em;
 }
 
