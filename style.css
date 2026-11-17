@@ -710,6 +710,7 @@ h2 i {
     0 25px 65px rgba(0, 0, 0, .25),
     inset 0 0 35px rgba(224, 183, 126, .055);
   backdrop-filter: blur(3px);
+  border-radius: 10px;
 }
 
 .highlight-ornament {
