@@ -1,4 +1,3 @@
-
 const CONFIG = {
   checkoutUrl: "",
   revealAtSeconds: 5
@@ -20,6 +19,11 @@ const unlockMessage = document.querySelector("#unlockMessage");
 const checkoutButtons = document.querySelectorAll(".checkout-button");
 const year = document.querySelector("#year");
 
+/* ELEMENTOS DA ROLAGEM HORIZONTAL */
+
+const horizontalStory = document.querySelector(".horizontal-story");
+const horizontalStoryWrap = document.querySelector(".horizontal-story-wrap");
+
 /* =========================================
    ESTADO
 ========================================= */
@@ -33,12 +37,80 @@ let watchedSeconds = 0;
 
 let isRestoringPosition = false;
 
+/* ESTADO DA ROLAGEM HORIZONTAL */
+
+let horizontalStoryMaxScroll = 0;
+let horizontalStoryStart = 0;
+let horizontalStoryReady = false;
+
 /* =========================================
    ANO DO RODAPÉ
 ========================================= */
 
 if (year) {
   year.textContent = new Date().getFullYear();
+}
+
+/* =========================================
+   ROLAGEM HORIZONTAL — CÁLCULOS
+========================================= */
+
+function refreshHorizontalStory() {
+  if (!horizontalStory || !horizontalStoryWrap) return;
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  horizontalStoryMaxScroll =
+    horizontalStory.scrollWidth - viewportWidth;
+
+  if (horizontalStoryMaxScroll <= 0) {
+    horizontalStoryWrap.style.height = `${viewportHeight}px`;
+    horizontalStoryReady = false;
+    horizontalStory.scrollLeft = 0;
+    return;
+  }
+
+  horizontalStoryWrap.style.height =
+    `${viewportHeight + horizontalStoryMaxScroll}px`;
+
+  horizontalStoryStart =
+    horizontalStoryWrap.getBoundingClientRect().top + window.scrollY;
+
+  horizontalStoryReady = true;
+
+  updateHorizontalStory();
+}
+
+/* =========================================
+   TRANSFORMAR A ROLAGEM VERTICAL
+   EM MOVIMENTO HORIZONTAL
+========================================= */
+
+function updateHorizontalStory() {
+  if (
+    !horizontalStoryReady ||
+    !horizontalStory ||
+    !horizontalStoryWrap
+  ) {
+    return;
+  }
+
+  const scrollDistance =
+    horizontalStoryWrap.offsetHeight - window.innerHeight;
+
+  if (scrollDistance <= 0) return;
+
+  const currentScroll =
+    window.scrollY - horizontalStoryStart;
+
+  const progress = Math.max(
+    0,
+    Math.min(1, currentScroll / scrollDistance)
+  );
+
+  horizontalStory.scrollLeft =
+    horizontalStoryMaxScroll * progress;
 }
 
 /* =========================================
@@ -53,7 +125,13 @@ function unlockPage() {
   lockedContent.classList.add("unlocked");
   lockedContent.setAttribute("aria-hidden", "false");
 
-  if (miniPlayer && !miniPlayerDismissed && video && !video.paused && !video.ended) {
+  if (
+    miniPlayer &&
+    !miniPlayerDismissed &&
+    video &&
+    !video.paused &&
+    !video.ended
+  ) {
     miniPlayer.classList.add("active");
   }
 
@@ -64,6 +142,10 @@ function unlockPage() {
       unlockMessage.classList.remove("show");
     }, 6500);
   }
+
+  window.setTimeout(() => {
+    refreshHorizontalStory();
+  }, 200);
 }
 
 /* =========================================
@@ -73,7 +155,8 @@ function unlockPage() {
 function updatePlayButtons() {
   if (!video || !miniPlay) return;
 
-  miniPlay.textContent = !video.paused && !video.ended ? "Ⅱ" : "▶";
+  miniPlay.textContent =
+    !video.paused && !video.ended ? "Ⅱ" : "▶";
 }
 
 /* =========================================
@@ -91,7 +174,8 @@ if (video) {
   video.addEventListener("seeking", () => {
     if (isRestoringPosition) return;
 
-    const difference = Math.abs(video.currentTime - lastAllowedTime);
+    const difference =
+      Math.abs(video.currentTime - lastAllowedTime);
 
     if (difference > 0.4) {
       restoreAllowedPosition();
@@ -192,7 +276,10 @@ if (miniPlay && video) {
       try {
         await video.play();
       } catch (error) {
-        console.error("Não foi possível reproduzir o vídeo:", error);
+        console.error(
+          "Não foi possível reproduzir o vídeo:",
+          error
+        );
       }
     } else {
       video.pause();
@@ -219,7 +306,14 @@ if (restoreVideo && videoFrame && miniPlayer) {
   });
 }
 
-window.addEventListener("scroll", updateVideoState, {
+/* =========================================
+   ROLAGEM NORMAL DA PÁGINA
+========================================= */
+
+window.addEventListener("scroll", () => {
+  updateVideoState();
+  updateHorizontalStory();
+}, {
   passive: true
 });
 
@@ -288,7 +382,50 @@ if (videoFrame) {
 }
 
 /* =========================================
+   ATUALIZAR QUANDO A TELA MUDAR
+========================================= */
+
+window.addEventListener("resize", () => {
+  refreshHorizontalStory();
+});
+
+/* =========================================
+   OBSERVAR DESBLOQUEIO DO CONTEÚDO
+========================================= */
+
+if (lockedContent) {
+  const storyUnlockObserver = new MutationObserver(() => {
+    if (lockedContent.classList.contains("unlocked")) {
+      window.setTimeout(() => {
+        refreshHorizontalStory();
+      }, 200);
+    }
+  });
+
+  storyUnlockObserver.observe(lockedContent, {
+    attributes: true,
+    attributeFilter: ["class"]
+  });
+}
+
+/* =========================================
    INICIALIZAÇÃO
 ========================================= */
 
 updatePlayButtons();
+
+if (horizontalStory && horizontalStoryWrap) {
+
+  refreshHorizontalStory();
+
+  window.addEventListener("load", () => {
+    refreshHorizontalStory();
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      refreshHorizontalStory();
+    });
+  }
+
+}

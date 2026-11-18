@@ -784,37 +784,7 @@ h2 i {
     );
 }
 
-/* FOLHAS DECORATIVAS */
 
-.experience-leaves {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.experience-leaves img {
-  position: absolute;
-  top: 3%;
-  width: clamp(210px, 27vw, 390px);
-  height: 94%;
-  object-fit: contain;
-  opacity: .72;
-  filter: drop-shadow(0 12px 20px rgba(120, 75, 35, .12));
-  pointer-events: none;
-}
-
-.experience-leaves-left {
-  left: -65px;
-  object-position: left center;
-}
-
-.experience-leaves-right {
-  right: -65px;
-  object-position: left center;
-  transform: scaleX(-1);
-}
 
 /* CONTEÚDO PRINCIPAL */
 
@@ -1020,6 +990,9 @@ h2 i {
 
 
 
+
+
+
 /* =========================================
    11. COMO FUNCIONA — RITUAL
 ========================================= */
@@ -1031,6 +1004,8 @@ h2 i {
   overflow: hidden;
   background: #260812;
 }
+
+/* FUNDO DA SEÇÃO */
 
 .postvideo-ritual .section-background img {
   object-position: center center;
@@ -1051,6 +1026,10 @@ h2 i {
     );
 }
 
+/* =========================================
+   ORGANIZAÇÃO DA SEÇÃO
+========================================= */
+
 .ritual-grid {
   display: grid;
   grid-template-columns: 1fr .9fr;
@@ -1058,12 +1037,17 @@ h2 i {
   gap: 9%;
 }
 
+/* =========================================
+   TEXTOS
+========================================= */
+
 .ritual-copy h2 {
   margin: 17px 0 25px;
   color: #f3e1ce;
   font-size: clamp(43px, 5vw, 65px);
   line-height: 1;
   text-transform: none;
+  font-weight: 610 !important;
 }
 
 .ritual-copy h2 em {
@@ -1073,9 +1057,13 @@ h2 i {
 
 .ritual-copy > p {
   color: #e0d0c7;
-  font-size: 13px;
-  line-height: 1.95;
+  font-size: 15px;
+  line-height: 1.85;
 }
+
+/* =========================================
+   OBSERVAÇÃO
+========================================= */
 
 .ritual-note {
   display: flex;
@@ -1095,134 +1083,138 @@ h2 i {
 .ritual-note p {
   margin: 0;
   color: #ead8c8;
-  font-family: var(--serif);
-  font-size: 19px;
+  font-family: var(--sans);
+  font-size: 13px;
   line-height: 1.5;
+  font-weight: 500;
 }
 
-/* ILUSTRAÇÃO DO LAÇO */
+/* =========================================
+   QUADRADO VISUAL — RITUAL
+========================================= */
 
 .ritual-visual {
   position: relative;
   min-height: 440px;
+
   display: grid;
   place-items: center;
+
   overflow: hidden;
-  border: 1px solid rgba(216, 180, 125, .35);
+  isolation: isolate;
+
+  border: 2px solid rgba(220, 180, 119, .65);
+  border-radius: 12px;
+
   background:
     radial-gradient(
-      circle at center,
-      rgba(119, 52, 65, .42),
-      transparent 62%
+      circle at 50% 45%,
+      rgba(119, 52, 65, .25),
+      transparent 65%
     ),
     linear-gradient(
       145deg,
-      rgba(58, 17, 31, .88),
-      rgba(32, 7, 16, .92)
+      #3a111f,
+      #200710
     );
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
-  backdrop-filter: blur(3px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, .2),
+    0 0 22px rgba(220, 180, 119, .08);
 }
 
-.ritual-glow {
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  border-radius: 50%;
-  background: rgba(186, 121, 86, .12);
-  filter: blur(55px);
-}
+/* REMOVER ELEMENTOS ANTIGOS */
 
+.ritual-glow,
 .ritual-circle {
+  display: none;
+}
+
+/* =========================================
+   VÍDEO — NÓ SE DESFAZENDO
+========================================= */
+
+.ritual-video-frame {
   position: absolute;
-  width: 260px;
-  height: 260px;
-  border: 1px solid rgba(219, 177, 119, .42);
-  border-radius: 50%;
+  z-index: 2;
+
+  top: 50%;
+  left: 0;
+
+  width: 110%;
+  max-width: none;
+
+  aspect-ratio: 612 / 252;
+
+  overflow: hidden;
+  border-radius: 10px;
+  background: transparent;
+
+  transform: translateY(-50%);
 }
 
-.ritual-circle-two {
-  width: 330px;
-  height: 330px;
-  border-color: rgba(219, 177, 119, .17);
-}
+/* VÍDEO */
 
-.ribbon-art {
-  position: relative;
-  width: 225px;
-  height: 220px;
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, .25));
-  animation: ribbonFloat 7s ease-in-out infinite;
-}
+.ritual-video {
+  display: block;
 
-.ribbon-loop {
-  position: absolute;
-  top: 38px;
-  width: 105px;
-  height: 125px;
-  border: 13px solid #c38b61;
-  border-radius: 80% 20% 75% 25%;
-  background: linear-gradient(
-    145deg,
-    rgba(230, 186, 136, .16),
-    rgba(91, 26, 39, .1)
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  transform: scale(1.05);
+  transform-origin: center;
+
+  border: none;
+  outline: none;
+  border-radius: 10px;
+
+  background: transparent;
+  filter: none;
+  mix-blend-mode: normal;
+
+  /* ESFUMADO SUPERIOR E INFERIOR */
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, .25) 12%,
+    #000 35%,
+    #000 65%,
+    rgba(0, 0, 0, .25) 88%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, .25) 12%,
+    #000 35%,
+    #000 65%,
+    rgba(0, 0, 0, .25) 88%,
+    transparent 100%
   );
 }
 
-.ribbon-loop-left {
-  left: 14px;
-  transform: rotate(32deg);
-}
-
-.ribbon-loop-right {
-  right: 14px;
-  transform: scaleX(-1) rotate(32deg);
-}
-
-.ribbon-center {
-  position: absolute;
-  top: 88px;
-  left: 99px;
-  width: 28px;
-  height: 32px;
-  border-radius: 40%;
-  background: linear-gradient(
-    145deg,
-    #f0c18a,
-    #9c5c45
-  );
-  transform: rotate(45deg);
-}
-
-.ribbon-tail {
-  position: absolute;
-  top: 112px;
-  width: 48px;
-  height: 100px;
-  border: 11px solid #ae704f;
-  border-top: 0;
-  border-radius: 0 0 50% 50%;
-}
-
-.ribbon-tail-left {
-  left: 75px;
-  transform: rotate(17deg);
-}
-
-.ribbon-tail-right {
-  right: 75px;
-  transform: rotate(-17deg);
-}
+/* =========================================
+   LEGENDA
+========================================= */
 
 .ritual-caption {
   position: absolute;
+  z-index: 4;
+
   right: 15px;
   bottom: 25px;
   left: 15px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
+
   color: #d5ad78;
   font-size: 8px;
   font-weight: 600;
@@ -1235,150 +1227,498 @@ h2 i {
 }
 
 /* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 900px) {
+
+  .postvideo-ritual {
+    padding: 100px 0;
+  }
+
+  .ritual-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+
+  .ritual-copy {
+    max-width: 680px;
+  }
+
+  .ritual-visual {
+    width: 100%;
+    max-width: 580px;
+    min-height: 440px;
+    margin: 0 auto;
+  }
+
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+
+  .postvideo-ritual {
+    padding: 80px 0;
+  }
+
+  .ritual-copy h2 {
+    font-size: clamp(38px, 10vw, 48px);
+  }
+
+  .ritual-copy > p {
+    font-size: 14px;
+  }
+
+  .ritual-note {
+    padding: 16px;
+  }
+
+  .ritual-visual {
+    min-height: 340px;
+    border-radius: 10px;
+  }
+
+  .ritual-video-frame {
+    width: 110%;
+  }
+
+  .ritual-caption {
+    bottom: 20px;
+    font-size: 7px;
+    gap: 11px;
+  }
+
+}
+
+/* =========================================
+   TELAS MUITO PEQUENAS
+========================================= */
+
+@media (max-width: 380px) {
+
+  .ritual-visual {
+    min-height: 300px;
+  }
+
+  .ritual-caption {
+    font-size: 6px;
+    letter-spacing: .15em;
+  }
+
+}
+
+/* =========================================
+   ACESSIBILIDADE
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ritual-video {
+    animation: none !important;
+  }
+
+}
+
+
+/* =========================================
    12. TRÊS MOMENTOS — ROLAGEM HORIZONTAL
 ========================================= */
 
-.horizontal-story {
+/* PERCURSO DA ROLAGEM */
+
+.horizontal-story-wrap {
   position: relative;
-  isolation: isolate;
-  display: flex;
   width: 100%;
-  min-height: 470px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  overscroll-behavior-x: contain;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(214, 180, 119, .65) #21070f;
-  background: #21070f;
+  height: calc(100vh - 70px);
+  background: transparent;
 }
+
+/* ÁREA HORIZONTAL FIXA */
+
+.horizontal-story {
+  position: sticky;
+  top: 0;
+  transform: translateY(-140px);
+
+  display: flex;
+  align-items: center;
+  gap: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+
+  padding: 0;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: transparent;
+  scrollbar-width: none;
+  overscroll-behavior: auto;
+  scroll-behavior: auto;
+}
+
+.horizontal-story::-webkit-scrollbar {
+  display: none;
+}
+
+/* FUNDO TRANSPARENTE */
 
 .story-background {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse at 50% 45%,
-      rgba(123, 48, 62, .35),
-      transparent 65%
-    ),
-    linear-gradient(
-      120deg,
-      #35101c,
-      #1b070d 50%,
-      #35101c
-    );
+  background: transparent;
 }
 
-.horizontal-story::-webkit-scrollbar {
-  height: 7px;
-}
-
-.horizontal-story::-webkit-scrollbar-track {
-  background: #21070f;
-}
-
-.horizontal-story::-webkit-scrollbar-thumb {
-  border-radius: 20px;
-  background: rgba(214, 180, 119, .65);
-}
+/* =========================================
+   CARDS
+========================================= */
 
 .story-panel {
   position: relative;
   z-index: 1;
-  flex: 0 0 42%;
-  min-width: 380px;
-  min-height: 470px;
+
+  flex: 0 0 42vw;
+  width: 42vw;
+  max-width: 760px;
+
+  height: min(62vh, 560px);
+  min-height: 390px;
+
+  align-self: center;
+
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 55px 8%;
+  align-items: center;
+
+  padding: clamp(38px, 4vw, 65px);
+
   overflow: hidden;
-  scroll-snap-align: start;
-  border-top: 1px solid rgba(214, 180, 119, .2);
-  border-right: 1px solid rgba(214, 180, 119, .2);
-  border-bottom: 1px solid rgba(214, 180, 119, .2);
+
+  border: 1px solid rgba(214, 180, 119, .72);
+  border-radius: 5px;
+
+  background:
+    radial-gradient(
+      circle at 85% 12%,
+      rgba(190, 91, 105, .20),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 12% 90%,
+      rgba(116, 25, 48, .30),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      #702538 0%,
+      #501426 48%,
+      #310b18 100%
+    );
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, .16),
+    inset 0 0 35px rgba(214, 180, 119, .035);
 }
 
-.story-panel:last-child {
-  border-right: 0;
-}
+/* CONTORNO INTERNO */
 
 .story-panel::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 9px;
   z-index: 0;
+
+  border: 1px solid rgba(214, 180, 119, .15);
+  border-radius: 12px;
+
+  pointer-events: none;
+}
+
+/* ILUMINAÇÃO SUAVE */
+
+.story-panel::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -80px;
+
+  width: 260px;
+  height: 260px;
+
+  border-radius: 50%;
+
+  background: rgba(230, 161, 145, .09);
+  filter: blur(65px);
+
+  pointer-events: none;
+}
+
+/* VARIAÇÃO SUAVE ENTRE OS CARDS */
+
+.story-two {
   background:
     radial-gradient(
-      circle at 50% 20%,
-      rgba(159, 88, 78, .22),
-      transparent 55%
+      circle at 85% 12%,
+      rgba(214, 180, 119, .15),
+      transparent 38%
     ),
     linear-gradient(
       145deg,
-      rgba(53, 16, 28, .88),
-      rgba(27, 7, 13, .94)
+      #79283b 0%,
+      #57172b 48%,
+      #350d1c 100%
     );
 }
 
-.story-two::before {
+.story-three {
   background:
     radial-gradient(
-      circle at 50% 20%,
-      rgba(214, 180, 119, .2),
-      transparent 58%
+      circle at 85% 12%,
+      rgba(190, 91, 105, .22),
+      transparent 38%
     ),
     linear-gradient(
       145deg,
-      rgba(74, 25, 39, .88),
-      rgba(35, 9, 17, .94)
+      #6d2538 0%,
+      #4b1427 48%,
+      #2e0a17 100%
     );
 }
 
-.story-three::before {
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(177, 105, 92, .24),
-      transparent 58%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(64, 21, 34, .88),
-      rgba(30, 8, 15, .94)
-    );
-}
+/* CONTEÚDO */
 
-.story-panel > * {
+.story-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 510px;
 }
+
+/* NÚMERO */
 
 .story-number {
   position: absolute;
+  z-index: 2;
+
   top: 30px;
-  right: 35px;
-  color: rgba(214, 180, 119, .45);
+  right: 34px;
+
+  color: rgba(225, 190, 126, .75);
   font-family: var(--serif);
-  font-size: 44px;
+  font-size: clamp(34px, 3vw, 46px);
+  font-weight: 400;
+  line-height: 1;
 }
+
+/* IDENTIFICAÇÃO DA ETAPA */
+
+.story-content .eyebrow {
+  margin: 0 0 21px;
+
+  color: #ead4c1;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  line-height: 1.6;
+}
+
+/* PEQUENO DETALHE DOURADO */
+
+.story-content .eyebrow::after {
+  content: "";
+  display: block;
+
+  width: 48px;
+  height: 1px;
+
+  margin-top: 16px;
+
+  background: linear-gradient(
+    90deg,
+    #d6b477,
+    rgba(214, 180, 119, 0)
+  );
+}
+
+/* TÍTULOS */
 
 .story-panel h2 {
-  margin: 12px 0;
+  margin: 0 0 20px;
+
   color: var(--gold-light);
-  font-size: clamp(31px, 3.6vw, 46px);
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.1vw, 48px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -.025em;
 }
 
-.story-panel p:last-child {
-  max-width: 310px;
-  margin-bottom: 0;
-  color: #d0c0b8;
-  font-size: 12px;
+/* DESCRIÇÃO */
+
+.story-content > p:last-child {
+  max-width: 420px;
+  margin: 0;
+
+  color: #e0d0ca;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.85;
 }
+
+/* DETALHE INFERIOR */
+
+.story-content::after {
+  content: "";
+  display: block;
+
+  width: 48px;
+  height: 1px;
+
+  margin-top: 27px;
+
+  background: linear-gradient(
+    90deg,
+    #d6b477,
+    rgba(214, 180, 119, 0)
+  );
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 900px) {
+
+  .horizontal-story {
+    gap: 18px;
+    padding: 0 5vw;
+  }
+
+  .story-panel {
+    flex-basis: 68vw;
+    width: 68vw;
+
+    height: min(60vh, 500px);
+    min-height: 360px;
+
+    padding: 48px;
+  }
+
+  .story-panel h2 {
+    font-size: clamp(34px, 5vw, 46px);
+  }
+
+  .story-number {
+    top: 28px;
+    right: 30px;
+  }
+
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+
+  .horizontal-story {
+    gap: 14px;
+    padding: 0 6vw;
+  }
+
+  .story-panel {
+    flex-basis: 84vw;
+    width: 84vw;
+
+    height: min(58svh, 440px);
+    min-height: 330px;
+
+    padding: 38px 28px;
+
+    border-radius: 16px;
+  }
+
+  .story-panel::before {
+    inset: 7px;
+    border-radius: 10px;
+  }
+
+  .story-number {
+    top: 25px;
+    right: 26px;
+    font-size: 35px;
+  }
+
+  .story-content {
+    max-width: 100%;
+  }
+
+  .story-content .eyebrow {
+    margin-bottom: 18px;
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+
+  .story-panel h2 {
+    margin-bottom: 18px;
+    font-size: clamp(31px, 8vw, 39px);
+    line-height: 1.12;
+  }
+
+  .story-content > p:last-child {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .story-content::after {
+    margin-top: 23px;
+  }
+
+}
+
+/* =========================================
+   TELAS MUITO PEQUENAS
+========================================= */
+
+@media (max-width: 380px) {
+
+  .story-panel {
+    padding: 34px 24px;
+  }
+
+  .story-panel h2 {
+    font-size: 29px;
+  }
+
+  .story-number {
+    font-size: 32px;
+  }
+
+}
+
+/* =========================================
+   ACESSIBILIDADE
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .horizontal-story {
+    scroll-behavior: auto;
+  }
+
+}
+
+
+
 
 /* =========================================
    13. O QUE VOCÊ VAI RECEBER
@@ -1387,85 +1727,450 @@ h2 i {
 .receive-section {
   position: relative;
   isolation: isolate;
-  padding: 130px 0;
+  overflow: hidden;
+  padding: 50px 0 50px;
+
   background:
     radial-gradient(
-      ellipse at 85% 20%,
-      rgba(190, 139, 119, .13),
-      transparent 45%
+      ellipse at 50% 0%,
+      rgba(164, 111, 86, .10),
+      transparent 55%
     ),
     linear-gradient(
       145deg,
-      #f7efe7,
-      #eadbd0
+      #f8f3ed 0%,
+      #f1e8df 55%,
+      #f7f0e9 100%
     );
 }
 
-.section-heading {
+/* DETALHES DE FUNDO */
+
+.receive-section::before,
+.receive-section::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 340px;
+  height: 340px;
+  border: 1px solid rgba(119, 49, 57, .07);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.receive-section::before {
+  top: -210px;
+  left: -170px;
+}
+
+.receive-section::after {
+  right: -200px;
+  bottom: -220px;
+}
+
+/* =========================================
+   CABEÇALHO
+========================================= */
+
+.receive-heading {
+  position: relative;
   max-width: 760px;
-  margin: 0 auto 45px;
+  margin: 0 auto 24px;
   text-align: center;
 }
 
-.section-heading .eyebrow {
-  color: #95613f;
+.receive-heading .eyebrow {
+  margin-bottom: 13px;
+  color: #9b714e;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .28em;
 }
 
-.section-heading h2 {
-  margin: 12px 0 16px;
-  color: var(--text-dark);
-  font-size: clamp(38px, 5vw, 64px);
+.receive-heading h2 {
+  margin: 0 0 10px;
+  color: #35131c;
+  font-family: var(--serif);
+  font-size: clamp(42px, 5vw, 65px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -.025em;
 }
 
-.section-heading > p:last-child {
-  max-width: 590px;
-  margin-inline: auto;
-  color: #715b55;
+.receive-heading h2 i {
+  color: #8b3d49;
+  font-weight: 400;
 }
+
+.receive-heading > p:last-of-type {
+  max-width: 520px;
+  margin: 0 auto;
+  color: #75615a;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.9;
+}
+
+.heading-ornament {
+  display: none;
+
+}
+
+.heading-ornament::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 1px solid #b18a62;
+  background: #f4ece4;
+}
+
+/* =========================================
+   LISTA DE ENTREGÁVEIS
+========================================= */
 
 .receive-list {
-  border-top: 1px solid rgba(104, 57, 48, .25);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  max-width: 1080px;
+  margin: 0 auto;
 }
+
+/* =========================================
+   CARDS
+========================================= */
 
 .receive-item {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  align-items: center;
-  gap: 20px;
-  padding: 27px 8px;
-  border-bottom: 1px solid rgba(104, 57, 48, .20);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-height: 285px;
+  padding: 32px 28px 34px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 253, 249, .94),
+      rgba(246, 237, 228, .96)
+    );
+
+  border: 1px solid rgba(130, 75, 65, .19);
+  border-radius: 3px;
+
+  box-shadow:
+    0 12px 35px rgba(64, 25, 29, .045),
+    inset 0 1px 0 rgba(255, 255, 255, .85);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
 }
 
-.receive-item > span {
-  color: #a56e4d;
+/* DETALHE SUPERIOR */
+
+.receive-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    #8a3e49,
+    #c2a078,
+    #8a3e49
+  );
+
+  opacity: .8;
+}
+
+/* DETALHE INTERNO */
+
+.receive-item::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 170px;
+  height: 170px;
+  right: -75px;
+  bottom: -85px;
+
+  border: 1px solid rgba(151, 102, 74, .10);
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 15px rgba(151, 102, 74, .025),
+    0 0 0 30px rgba(151, 102, 74, .018);
+}
+
+.receive-item:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(139, 61, 73, .38);
+
+  box-shadow:
+    0 20px 45px rgba(64, 25, 29, .09),
+    inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+/* =========================================
+   NUMERAÇÃO
+========================================= */
+
+.receive-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  margin-bottom: 28px;
+
+  color: #956847;
   font-family: var(--serif);
-  font-size: 34px;
+  font-size: 25px;
+  font-weight: 500;
+
+  border: 1px solid rgba(163, 119, 81, .43);
+  border-radius: 50%;
+}
+
+/* =========================================
+   CONTEÚDO
+========================================= */
+
+.receive-content {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+}
+
+.receive-label {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #a27b58;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .19em;
 }
 
 .receive-item h3 {
-  margin: 0 0 6px;
-  color: #421c25;
-  font-family: var(--sans);
-  font-size: 11px;
+  margin: 0 0 13px;
+
+  color: #4b202a;
+  font-family: var(--serif);
+  font-size: 23px;
   font-weight: 600;
-  letter-spacing: .13em;
+  line-height: 1.2;
+  letter-spacing: .005em;
 }
 
 .receive-item p {
   margin: 0;
-  color: #705a54;
+
+  color: #74615a;
+  font-family: var(--sans);
   font-size: 12px;
+  font-weight: 400;
+  line-height: 1.9;
 }
 
-.center-note {
-  max-width: 650px;
-  margin: 28px auto 0;
-  color: #856f66;
+/* =========================================
+   NUMERAÇÃO DECORATIVA
+========================================= */
+
+.receive-decoration {
+  position: absolute;
+  right: 15px;
+  bottom: -32px;
+
+  color: rgba(137, 76, 72, .045);
+  font-family: var(--serif);
+  font-size: 130px;
+  font-weight: 500;
+  line-height: 1;
+
+  pointer-events: none;
+}
+
+/* =========================================
+   FRASE FINAL
+========================================= */
+
+.receive-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+
+  max-width: 900px;
+  margin: 55px auto 0;
+}
+
+.receive-footer p {
+  max-width: 630px;
+  margin: 0;
+
+  color: #866f63;
+  font-family: var(--sans);
   font-size: 9px;
-  letter-spacing: .2em;
-  line-height: 2;
+  font-weight: 500;
+  line-height: 2.1;
+  letter-spacing: .16em;
   text-align: center;
 }
+
+.receive-footer-line {
+  flex: 1;
+  max-width: 65px;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(164, 119, 80, .55)
+  );
+}
+
+.receive-footer-line:last-child {
+  transform: rotate(180deg);
+}
+
+/* =========================================
+   RESPONSIVIDADE — TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .receive-section {
+    padding: 100px 0;
+  }
+
+  .receive-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .receive-item {
+    min-height: 270px;
+    padding: 28px 24px;
+  }
+
+  .receive-item:last-child {
+    grid-column: 1 / -1;
+    min-height: 230px;
+  }
+
+}
+
+/* =========================================
+   RESPONSIVIDADE — CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+  .receive-section {
+    padding: 78px 0 75px;
+  }
+
+  .receive-heading {
+    margin-bottom: 42px;
+    padding: 0 8px;
+  }
+
+  .receive-heading .eyebrow {
+    font-size: 9px;
+    letter-spacing: .22em;
+  }
+
+  .receive-heading h2 {
+    font-size: clamp(37px, 10vw, 48px);
+    line-height: 1.08;
+  }
+
+  .receive-heading > p:last-of-type {
+    max-width: 330px;
+    font-size: 12px;
+  }
+
+  .heading-ornament {
+    margin-top: 22px;
+  }
+
+  .receive-list {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .receive-item,
+  .receive-item:last-child {
+    grid-column: auto;
+    min-height: auto;
+    padding: 25px 23px 29px;
+  }
+
+  .receive-number {
+    width: 43px;
+    height: 43px;
+    margin-bottom: 22px;
+    font-size: 23px;
+  }
+
+  .receive-label {
+    font-size: 8px;
+    margin-bottom: 8px;
+  }
+
+  .receive-item h3 {
+    font-size: 23px;
+    margin-bottom: 10px;
+  }
+
+  .receive-item p {
+    font-size: 11px;
+    line-height: 1.85;
+  }
+
+  .receive-decoration {
+    font-size: 105px;
+    right: 10px;
+    bottom: -25px;
+  }
+
+  .receive-footer {
+    gap: 10px;
+    margin-top: 38px;
+  }
+
+  .receive-footer p {
+    font-size: 8px;
+    line-height: 2;
+    letter-spacing: .11em;
+  }
+
+  .receive-footer-line {
+    max-width: 20px;
+    min-width: 12px;
+  }
+
+}
+
 
 /* =========================================
    14. OFERTA
@@ -1474,7 +2179,7 @@ h2 i {
 .offer-section {
   position: relative;
   isolation: isolate;
-  padding: 110px 24px 125px;
+  padding: 50px 24px 55px;
   overflow: hidden;
   text-align: center;
   background: #210308;
@@ -1528,19 +2233,22 @@ h2 i {
 }
 
 .offer-header h2 {
-  margin: 12px 0 16px;
-  color: var(--gold-light);
-  font-size: clamp(38px, 5vw, 64px);
+    margin: 12px 0 16px;
+    color: var(--gold-light);
+    font-size: clamp(43px, 5vw, 64px);
+    font-weight: 700 !important;
 }
 
 .offer-header p:last-child {
   color: #e0d0c7;
+  font-size: 15px;
 }
 
 .offer-card {
-  width: min(530px, 100%);
+  width: min(500px, 80%);
+  height: min(450px);
   margin: 0 auto;
-  padding: 43px 42px 38px;
+  padding: 30px 45px 30px;
   border: 1px solid rgba(214, 180, 119, .72);
   border-radius: 4px;
   background: linear-gradient(
@@ -1564,12 +2272,13 @@ h2 i {
 }
 
 .offer-name {
-  margin: 30px 0 22px;
+  margin: 20px 0 2px;
   color: var(--cream);
   font-family: var(--serif);
   font-size: 46px;
   line-height: 1;
   letter-spacing: .03em;
+  font-weight: 600;
 }
 
 .offer-name i {
@@ -1588,7 +2297,7 @@ h2 i {
 }
 
 .payment-label {
-  margin: 25px 0 0;
+  margin: 25px 0 -10px;
   color: var(--muted);
   font-size: 9px;
   letter-spacing: .2em;
@@ -1616,7 +2325,7 @@ h2 i {
   width: 100%;
   min-height: 65px;
   padding-inline: 12px;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .secure-note {

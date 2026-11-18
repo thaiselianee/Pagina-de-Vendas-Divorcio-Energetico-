@@ -299,21 +299,7 @@
       <section class="postvideo-experience">
 
         <!-- FOLHAS DECORATIVAS LATERAIS -->
-        <div class="experience-leaves" aria-hidden="true">
-
-          <img
-            src="./assets/folhas-douradas.png"
-            alt=""
-            class="experience-leaves-left"
-          >
-
-          <img
-            src="./assets/folhas-douradas.png"
-            alt=""
-            class="experience-leaves-right"
-          >
-
-        </div>
+       
 
         <div class="postvideo-container">
 
@@ -399,9 +385,9 @@
       </section>
 
 
+   
       <!-- =========================================
-           3. COMO FUNCIONA
-           IMAGEM: assets/fundo-ritual.png
+          3. COMO FUNCIONA
       ========================================== -->
 
       <section class="postvideo-ritual">
@@ -445,8 +431,8 @@
               <span>✧</span>
 
               <p>
-                Você poderá utilizar uma tesoura, caso deseje.
-                O mais importante é a intenção colocada nesse momento.
+                VOCÊ PODERÁ UTILIZAR UMA TEUSORA, CASO DESEJA.
+                O MAIS INPORTANTE É A INTENÇÃO COLOCADA NESSE MOMENTO.
               </p>
 
             </div>
@@ -460,12 +446,25 @@
             <div class="ritual-circle ritual-circle-one"></div>
             <div class="ritual-circle ritual-circle-two"></div>
 
-            <div class="ribbon-art">
-              <span class="ribbon-loop ribbon-loop-left"></span>
-              <span class="ribbon-loop ribbon-loop-right"></span>
-              <span class="ribbon-center"></span>
-              <span class="ribbon-tail ribbon-tail-left"></span>
-              <span class="ribbon-tail ribbon-tail-right"></span>
+            <!-- VÍDEO DO NÓ SE DESFAZENDO -->
+
+            <div class="ritual-video-frame">
+
+              <video
+                class="ritual-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                disablepictureinpicture>
+
+                <source
+                  src="./assets/no.mp4"
+                  type="video/mp4">
+
+              </video>
+
             </div>
 
             <div class="ritual-caption">
@@ -481,82 +480,105 @@
       </section>
 
 
+ 
       <!-- =========================================
-           4. TRÊS MOMENTOS
-           ÚNICA SEÇÃO COM ROLAGEM HORIZONTAL
-           FUNDO: COR E GRADIENTE PELO CSS
+          4. TRÊS MOMENTOS
+          ROLAGEM HORIZONTAL CONTROLADA PELA PÁGINA
       ========================================== -->
 
-      <section class="horizontal-story"
-        aria-label="Três momentos para refletir sobre o encerramento de um vínculo">
+      <div class="horizontal-story-wrap">
 
-        <div class="story-background" aria-hidden="true"></div>
+        <section
+          class="horizontal-story"
+          aria-label="Três momentos para refletir sobre o encerramento de um vínculo"
+        >
 
-        <article class="story-panel story-one">
+          <!-- CARD 01 -->
 
-          <span class="story-number">01</span>
+          <article class="story-panel story-one">
 
-          <p class="eyebrow">OLHAR PARA A HISTÓRIA</p>
+            <span class="story-number">01</span>
 
-          <h2>
-            RECONHECER<br>
-            O QUE FOI VIVIDO.
-          </h2>
+            <div class="story-content">
 
-          <p>
-            Uma oportunidade de olhar para essa história com outra
-            perspectiva e reconhecer o que deseja deixar para trás.
-          </p>
+              <p class="eyebrow">OLHAR PARA A HISTÓRIA</p>
 
-        </article>
+              <h2>
+                RECONHECER<br>
+                O QUE FOI VIVIDO.
+              </h2>
 
-        <article class="story-panel story-two">
+              <p>
+                Uma oportunidade de olhar para essa história com outra
+                perspectiva e reconhecer o que deseja deixar para trás.
+              </p>
 
-          <span class="story-number">02</span>
+            </div>
 
-          <p class="eyebrow">EXPRESSAR UMA DECISÃO</p>
+          </article>
 
-          <h2>
-            MARCAR O FIM<br>
-            DE UM CICLO.
-          </h2>
+          <!-- CARD 02 -->
 
-          <p>
-            Dar forma a uma intenção: simbolizar o encerramento
-            desse vínculo e a separação dos caminhos.
-          </p>
+          <article class="story-panel story-two">
 
-        </article>
+            <span class="story-number">02</span>
 
-        <article class="story-panel story-three">
+            <div class="story-content">
 
-          <span class="story-number">03</span>
+              <p class="eyebrow">EXPRESSAR UMA DECISÃO</p>
 
-          <p class="eyebrow">ABRIR ESPAÇO</p>
+              <h2>
+                MARCAR O FIM<br>
+                DE UM CICLO.
+              </h2>
 
-          <h2>
-            DIRECIONAR O OLHAR<br>
-            PARA SI MESMA.
-          </h2>
+              <p>
+                Dar forma a uma intenção: simbolizar o encerramento
+                desse vínculo e a separação dos caminhos.
+              </p>
 
-          <p>
-            Dar espaço para novos caminhos e para aquilo que você
-            deseja viver daqui para frente.
-          </p>
+            </div>
 
-        </article>
+          </article>
 
-      </section>
+          <!-- CARD 03 -->
+
+          <article class="story-panel story-three">
+
+            <span class="story-number">03</span>
+
+            <div class="story-content">
+
+              <p class="eyebrow">ABRIR ESPAÇO</p>
+
+              <h2>
+                DIRECIONAR O OLHAR<br>
+                PARA SI MESMA.
+              </h2>
+
+              <p>
+                Dar espaço para novos caminhos e para aquilo que você
+                deseja viver daqui para frente.
+              </p>
+
+            </div>
+
+          </article>
+
+        </section>
+
+      </div>
 
 
+
+     
       <!-- =========================================
-           5. O QUE VOCÊ VAI RECEBER
-           FUNDO CLARO: SEM IMAGEM
+          5. O QUE VOCÊ VAI RECEBER
       ========================================== -->
 
       <section class="receive-section section-shell">
 
-        <div class="section-heading">
+        <div class="section-heading receive-heading">
 
           <p class="eyebrow">SEU ACESSO INCLUI</p>
 
@@ -568,15 +590,18 @@
             Ao adquirir o Divórcio Energético, você receberá:
           </p>
 
+          <span class="heading-ornament"></span>
+
         </div>
 
         <div class="receive-list">
 
           <article class="receive-item">
 
-            <span>01</span>
+            <div class="receive-number">01</div>
 
-            <div>
+            <div class="receive-content">
+              <span class="receive-label">PRIMEIRA ETAPA</span>
 
               <h3>3 AULAS GRAVADAS</h3>
 
@@ -584,16 +609,18 @@
                 Cláudia apresenta a proposta dos vínculos invisíveis
                 e prepara você para realizar a experiência.
               </p>
-
             </div>
+
+            <div class="receive-decoration">01</div>
 
           </article>
 
           <article class="receive-item">
 
-            <span>02</span>
+            <div class="receive-number">02</div>
 
-            <div>
+            <div class="receive-content">
+              <span class="receive-label">ACOMPANHAMENTO</span>
 
               <h3>ORIENTAÇÃO GUIADA</h3>
 
@@ -602,16 +629,18 @@
                 em que você será conduzida pelas palavras e pela
                 intenção de separação.
               </p>
-
             </div>
+
+            <div class="receive-decoration">02</div>
 
           </article>
 
           <article class="receive-item">
 
-            <span>03</span>
+            <div class="receive-number">03</div>
 
-            <div>
+            <div class="receive-content">
+              <span class="receive-label">EXPERIÊNCIA SIMBÓLICA</span>
 
               <h3>EXPERIÊNCIA SIMBÓLICA DO CORTE DO LAÇO</h3>
 
@@ -620,17 +649,26 @@
                 uma fita ou um laço para representar o vínculo
                 que deseja encerrar.
               </p>
-
             </div>
+
+            <div class="receive-decoration">03</div>
 
           </article>
 
         </div>
 
-        <p class="center-note">
-          O PROCESSO FOI PENSADO PARA QUE VOCÊ ACOMPANHE AS ORIENTAÇÕES
-          E REALIZE A EXPERIÊNCIA NO SEU PRÓPRIO RITMO.
-        </p>
+        <div class="receive-footer">
+
+          <span class="receive-footer-line"></span>
+
+          <p>
+            O PROCESSO FOI PENSADO PARA QUE VOCÊ ACOMPANHE AS ORIENTAÇÕES
+            E REALIZE A EXPERIÊNCIA NO SEU PRÓPRIO RITMO.
+          </p>
+
+          <span class="receive-footer-line"></span>
+
+        </div>
 
       </section>
 
@@ -644,7 +682,7 @@
 
         <div class="section-background" aria-hidden="true">
           <img
-            src="./assets/img-fundo4.jpeg"
+            src="./assets/img-fundo2.jpeg"
             alt=""
             loading="lazy">
         </div>
@@ -655,7 +693,6 @@
 
         <div class="offer-header">
 
-          <p class="eyebrow">SUA PRÓXIMA ETAPA PODE COMEÇAR AQUI</p>
 
           <h2>
             FAÇA SEU <i>DIVÓRCIO ENERGÉTICO</i>
