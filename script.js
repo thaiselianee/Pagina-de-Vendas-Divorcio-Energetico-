@@ -1,5 +1,5 @@
 const CONFIG = {
-  checkoutUrl: "",
+checkoutUrl: "https://pay.hotmart.com/Y108408135W",
   revealAtSeconds: 5
 };
 
@@ -19,11 +19,6 @@ const unlockMessage = document.querySelector("#unlockMessage");
 const checkoutButtons = document.querySelectorAll(".checkout-button");
 const year = document.querySelector("#year");
 
-/* ELEMENTOS DA ROLAGEM HORIZONTAL */
-
-const horizontalStory = document.querySelector(".horizontal-story");
-const horizontalStoryWrap = document.querySelector(".horizontal-story-wrap");
-
 /* =========================================
    ESTADO
 ========================================= */
@@ -37,80 +32,12 @@ let watchedSeconds = 0;
 
 let isRestoringPosition = false;
 
-/* ESTADO DA ROLAGEM HORIZONTAL */
-
-let horizontalStoryMaxScroll = 0;
-let horizontalStoryStart = 0;
-let horizontalStoryReady = false;
-
 /* =========================================
    ANO DO RODAPÉ
 ========================================= */
 
 if (year) {
   year.textContent = new Date().getFullYear();
-}
-
-/* =========================================
-   ROLAGEM HORIZONTAL — CÁLCULOS
-========================================= */
-
-function refreshHorizontalStory() {
-  if (!horizontalStory || !horizontalStoryWrap) return;
-
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-
-  horizontalStoryMaxScroll =
-    horizontalStory.scrollWidth - viewportWidth;
-
-  if (horizontalStoryMaxScroll <= 0) {
-    horizontalStoryWrap.style.height = `${viewportHeight}px`;
-    horizontalStoryReady = false;
-    horizontalStory.scrollLeft = 0;
-    return;
-  }
-
-  horizontalStoryWrap.style.height =
-    `${viewportHeight + horizontalStoryMaxScroll}px`;
-
-  horizontalStoryStart =
-    horizontalStoryWrap.getBoundingClientRect().top + window.scrollY;
-
-  horizontalStoryReady = true;
-
-  updateHorizontalStory();
-}
-
-/* =========================================
-   TRANSFORMAR A ROLAGEM VERTICAL
-   EM MOVIMENTO HORIZONTAL
-========================================= */
-
-function updateHorizontalStory() {
-  if (
-    !horizontalStoryReady ||
-    !horizontalStory ||
-    !horizontalStoryWrap
-  ) {
-    return;
-  }
-
-  const scrollDistance =
-    horizontalStoryWrap.offsetHeight - window.innerHeight;
-
-  if (scrollDistance <= 0) return;
-
-  const currentScroll =
-    window.scrollY - horizontalStoryStart;
-
-  const progress = Math.max(
-    0,
-    Math.min(1, currentScroll / scrollDistance)
-  );
-
-  horizontalStory.scrollLeft =
-    horizontalStoryMaxScroll * progress;
 }
 
 /* =========================================
@@ -142,10 +69,6 @@ function unlockPage() {
       unlockMessage.classList.remove("show");
     }, 6500);
   }
-
-  window.setTimeout(() => {
-    refreshHorizontalStory();
-  }, 200);
 }
 
 /* =========================================
@@ -312,7 +235,6 @@ if (restoreVideo && videoFrame && miniPlayer) {
 
 window.addEventListener("scroll", () => {
   updateVideoState();
-  updateHorizontalStory();
 }, {
   passive: true
 });
@@ -381,51 +303,115 @@ if (videoFrame) {
   });
 }
 
-/* =========================================
-   ATUALIZAR QUANDO A TELA MUDAR
-========================================= */
-
-window.addEventListener("resize", () => {
-  refreshHorizontalStory();
-});
 
 /* =========================================
-   OBSERVAR DESBLOQUEIO DO CONTEÚDO
+   ANIMAÇÃO DOS ELEMENTOS AO ROLAR A PÁGINA
 ========================================= */
 
-if (lockedContent) {
-  const storyUnlockObserver = new MutationObserver(() => {
-    if (lockedContent.classList.contains("unlocked")) {
-      window.setTimeout(() => {
-        refreshHorizontalStory();
-      }, 200);
-    }
+function initializeScrollReveal() {
+
+  const revealSelectors = [
+    ".postvideo-identification .identification-copy",
+    ".postvideo-identification .identification-highlight",
+    ".postvideo-identification .identification-closing",
+
+    ".postvideo-experience .experience-heading",
+    ".postvideo-experience .experience-card",
+
+    ".postvideo-ritual .ritual-copy",
+    ".postvideo-ritual .ritual-visual",
+
+    ".receive-heading",
+    ".receive-item",
+    ".receive-footer",
+
+    ".offer-header",
+    ".offer-card",
+
+    ".bonus-section .section-heading",
+    ".bonus-card",
+
+    ".guarantee-seal",
+    ".guarantee-content",
+
+    ".closing-content",
+
+    ".faq-section .section-heading",
+    ".faq-list details",
+
+    ".footer-brand",
+    ".footer small"
+  ];
+
+  const elements = document.querySelectorAll(
+    revealSelectors
+      .map(selector => `#lockedContent ${selector}`)
+      .join(",")
+  );
+
+  // Configura os elementos e seus atrasos
+
+  elements.forEach((element, index) => {
+
+    element.classList.add("scroll-reveal");
+
+    const delay = (index % 4) * 120;
+
+    element.style.setProperty(
+      "--reveal-delay",
+      `${delay}ms`
+    );
+
   });
 
-  storyUnlockObserver.observe(lockedContent, {
-    attributes: true,
-    attributeFilter: ["class"]
+  // Observa a entrada dos elementos na tela
+
+  const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        entry.target.classList.add("is-visible");
+
+        observer.unobserve(entry.target);
+
+      }
+
+    });
+
+  }, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -45px 0px"
   });
+
+  elements.forEach(element => {
+    observer.observe(element);
+  });
+
 }
+
+/* =========================================
+   INTEGRAÇÃO COM A LIBERAÇÃO DO CONTEÚDO
+========================================= */
+
+const originalUnlockPage = unlockPage;
+
+unlockPage = function() {
+
+  const wasUnlocked = contentUnlocked;
+
+  originalUnlockPage();
+
+  if (!wasUnlocked && contentUnlocked) {
+    initializeScrollReveal();
+  }
+
+};
+
 
 /* =========================================
    INICIALIZAÇÃO
 ========================================= */
 
 updatePlayButtons();
-
-if (horizontalStory && horizontalStoryWrap) {
-
-  refreshHorizontalStory();
-
-  window.addEventListener("load", () => {
-    refreshHorizontalStory();
-  });
-
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => {
-      refreshHorizontalStory();
-    });
-  }
-
-}
