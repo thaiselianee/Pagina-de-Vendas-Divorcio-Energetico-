@@ -1,5 +1,6 @@
+
 const CONFIG = {
-checkoutUrl: "https://pay.hotmart.com/Y108408135W",
+  checkoutUrl: "https://pay.hotmart.com/Y108408135W",
   revealAtSeconds: 5
 };
 
@@ -17,7 +18,7 @@ const restoreVideo = document.querySelector("#restoreVideo");
 const unlockMessage = document.querySelector("#unlockMessage");
 
 const checkoutButtons = document.querySelectorAll(".checkout-button");
-const year = document.querySelector("#year");
+const year = document.querySelector(".footer .year");
 
 /* =========================================
    ESTADO
@@ -32,6 +33,10 @@ let watchedSeconds = 0;
 
 let isRestoringPosition = false;
 
+let threeMomentsAnimation = null;
+let threeMomentsInitialized = false;
+let resizeTimer = null;
+
 /* =========================================
    ANO DO RODAPÉ
 ========================================= */
@@ -45,6 +50,7 @@ if (year) {
 ========================================= */
 
 function unlockPage() {
+
   if (contentUnlocked || !lockedContent) return;
 
   contentUnlocked = true;
@@ -63,12 +69,19 @@ function unlockPage() {
   }
 
   if (unlockMessage) {
+
     unlockMessage.classList.add("show");
 
     window.setTimeout(() => {
       unlockMessage.classList.remove("show");
     }, 6500);
+
   }
+
+  /* INICIALIZA AS ANIMAÇÕES APÓS LIBERAR O CONTEÚDO */
+
+  initializeScrollReveal();
+
 }
 
 /* =========================================
@@ -76,10 +89,12 @@ function unlockPage() {
 ========================================= */
 
 function updatePlayButtons() {
+
   if (!video || !miniPlay) return;
 
   miniPlay.textContent =
     !video.paused && !video.ended ? "Ⅱ" : "▶";
+
 }
 
 /* =========================================
@@ -87,14 +102,18 @@ function updatePlayButtons() {
 ========================================= */
 
 function restoreAllowedPosition() {
+
   if (!video || isRestoringPosition) return;
 
   isRestoringPosition = true;
   video.currentTime = lastAllowedTime;
+
 }
 
 if (video) {
+
   video.addEventListener("seeking", () => {
+
     if (isRestoringPosition) return;
 
     const difference =
@@ -103,18 +122,23 @@ if (video) {
     if (difference > 0.4) {
       restoreAllowedPosition();
     }
+
   });
 
   video.addEventListener("seeked", () => {
+
     if (isRestoringPosition) {
       isRestoringPosition = false;
     }
 
     lastPlaybackTime = video.currentTime;
+
   });
 
   video.addEventListener("timeupdate", () => {
+
     if (!video.seeking && !isRestoringPosition) {
+
       const currentTime = video.currentTime;
       const difference = currentTime - lastPlaybackTime;
 
@@ -131,6 +155,7 @@ if (video) {
       }
 
       lastPlaybackTime = currentTime;
+
     }
 
     if (watchedSeconds >= CONFIG.revealAtSeconds) {
@@ -138,24 +163,33 @@ if (video) {
     }
 
     updateVideoState();
+
   });
 
   video.addEventListener("play", () => {
+
     lastPlaybackTime = video.currentTime;
     updateVideoState();
+
   });
 
   video.addEventListener("pause", () => {
+
     lastPlaybackTime = video.currentTime;
     updateVideoState();
+
   });
 
   video.addEventListener("loadedmetadata", () => {
+
     lastAllowedTime = 0;
     lastPlaybackTime = 0;
     watchedSeconds = 0;
+
     updatePlayButtons();
+
   });
+
 }
 
 /* =========================================
@@ -163,6 +197,7 @@ if (video) {
 ========================================= */
 
 function updateVideoState() {
+
   if (!video) return;
 
   if (watchedSeconds >= CONFIG.revealAtSeconds) {
@@ -177,6 +212,7 @@ function updateVideoState() {
     !video.ended &&
     !miniPlayerDismissed
   ) {
+
     const frameRect = videoFrame.getBoundingClientRect();
 
     if (frameRect.bottom < 0 || frameRect.top < 0) {
@@ -184,9 +220,11 @@ function updateVideoState() {
     } else {
       miniPlayer.classList.remove("active");
     }
+
   }
 
   updatePlayButtons();
+
 }
 
 /* =========================================
@@ -194,26 +232,36 @@ function updateVideoState() {
 ========================================= */
 
 if (miniPlay && video) {
+
   miniPlay.addEventListener("click", async () => {
+
     if (video.paused) {
+
       try {
         await video.play();
       } catch (error) {
+
         console.error(
           "Não foi possível reproduzir o vídeo:",
           error
         );
+
       }
+
     } else {
       video.pause();
     }
 
     updatePlayButtons();
+
   });
+
 }
 
 if (restoreVideo && videoFrame && miniPlayer) {
+
   restoreVideo.addEventListener("click", () => {
+
     miniPlayerDismissed = true;
     miniPlayer.classList.remove("active");
 
@@ -223,10 +271,14 @@ if (restoreVideo && videoFrame && miniPlayer) {
     });
 
     window.setTimeout(() => {
+
       miniPlayerDismissed = false;
       updateVideoState();
+
     }, 900);
+
   });
+
 }
 
 /* =========================================
@@ -234,7 +286,9 @@ if (restoreVideo && videoFrame && miniPlayer) {
 ========================================= */
 
 window.addEventListener("scroll", () => {
+
   updateVideoState();
+
 }, {
   passive: true
 });
@@ -244,7 +298,9 @@ window.addEventListener("scroll", () => {
 ========================================= */
 
 if (video) {
+
   video.addEventListener("ended", () => {
+
     unlockPage();
 
     if (miniPlayer) {
@@ -252,7 +308,9 @@ if (video) {
     }
 
     updatePlayButtons();
+
   });
+
 }
 
 /* =========================================
@@ -260,8 +318,11 @@ if (video) {
 ========================================= */
 
 checkoutButtons.forEach((button) => {
+
   button.addEventListener("click", (event) => {
+
     if (!CONFIG.checkoutUrl) {
+
       event.preventDefault();
 
       alert(
@@ -270,6 +331,7 @@ checkoutButtons.forEach((button) => {
       );
 
       return;
+
     }
 
     event.preventDefault();
@@ -279,7 +341,9 @@ checkoutButtons.forEach((button) => {
       "_blank",
       "noopener,noreferrer"
     );
+
   });
+
 });
 
 /* =========================================
@@ -287,11 +351,13 @@ checkoutButtons.forEach((button) => {
 ========================================= */
 
 if (videoFrame) {
+
   videoFrame.addEventListener("contextmenu", (event) => {
     event.preventDefault();
   });
 
   videoFrame.addEventListener("keydown", (event) => {
+
     if (
       event.key === "ArrowLeft" ||
       event.key === "ArrowRight" ||
@@ -300,9 +366,10 @@ if (videoFrame) {
     ) {
       event.preventDefault();
     }
-  });
-}
 
+  });
+
+}
 
 /* =========================================
    ANIMAÇÃO DOS ELEMENTOS AO ROLAR A PÁGINA
@@ -311,6 +378,7 @@ if (videoFrame) {
 function initializeScrollReveal() {
 
   const revealSelectors = [
+
     ".postvideo-identification .identification-copy",
     ".postvideo-identification .identification-highlight",
     ".postvideo-identification .identification-closing",
@@ -339,8 +407,8 @@ function initializeScrollReveal() {
     ".faq-section .section-heading",
     ".faq-list details",
 
-    ".footer-brand",
-    ".footer small"
+
+
   ];
 
   const elements = document.querySelectorAll(
@@ -348,8 +416,6 @@ function initializeScrollReveal() {
       .map(selector => `#lockedContent ${selector}`)
       .join(",")
   );
-
-  // Configura os elementos e seus atrasos
 
   elements.forEach((element, index) => {
 
@@ -363,8 +429,6 @@ function initializeScrollReveal() {
     );
 
   });
-
-  // Observa a entrada dos elementos na tela
 
   const observer = new IntersectionObserver((entries) => {
 
@@ -381,34 +445,146 @@ function initializeScrollReveal() {
     });
 
   }, {
+
     threshold: 0.12,
     rootMargin: "0px 0px -45px 0px"
+
   });
 
   elements.forEach(element => {
     observer.observe(element);
   });
 
+  /* INICIALIZA OS TRÊS MOMENTOS */
+
+  if (!threeMomentsInitialized) {
+
+    threeMomentsInitialized = true;
+
+    window.setTimeout(() => {
+
+      initializeThreeMoments();
+
+    }, 500);
+
+  }
+
 }
 
 /* =========================================
-   INTEGRAÇÃO COM A LIBERAÇÃO DO CONTEÚDO
+   13. TRÊS MOMENTOS — HORIZONTAL COM PIN
 ========================================= */
 
-const originalUnlockPage = unlockPage;
+function initializeThreeMoments() {
 
-unlockPage = function() {
+  const section = document.querySelector("#tres-momentos");
+  const track = section?.querySelector(".three-moments-track");
 
-  const wasUnlocked = contentUnlocked;
+  if (!section || !track) return;
 
-  originalUnlockPage();
+  if (
+    typeof gsap === "undefined" ||
+    typeof ScrollTrigger === "undefined"
+  ) {
 
-  if (!wasUnlocked && contentUnlocked) {
-    initializeScrollReveal();
+    console.error("GSAP ou ScrollTrigger não foi carregado.");
+
+    return;
+
   }
 
-};
+  gsap.registerPlugin(ScrollTrigger);
 
+  /* REMOVE ANIMAÇÃO ANTERIOR, SE EXISTIR */
+
+  if (threeMomentsAnimation) {
+
+    threeMomentsAnimation.scrollTrigger?.kill();
+    threeMomentsAnimation.kill();
+
+    threeMomentsAnimation = null;
+
+  }
+
+  /* REINICIA A POSIÇÃO DOS CARDS */
+
+  gsap.set(track, {
+    x: 0
+  });
+
+  /* CALCULA A DISTÂNCIA REAL DO MOVIMENTO */
+
+  function getDistance() {
+
+    return Math.max(
+      0,
+      track.scrollWidth - section.clientWidth
+    );
+
+  }
+
+  if (getDistance() <= 0) {
+
+    console.warn(
+      "Os cards não possuem largura horizontal suficiente.",
+      {
+        larguraDosCards: track.scrollWidth,
+        larguraDaSecao: section.clientWidth
+      }
+    );
+
+    return;
+
+  }
+
+  /* CRIA A ANIMAÇÃO HORIZONTAL */
+
+  threeMomentsAnimation = gsap.to(track, {
+
+    x: () => -getDistance(),
+
+    ease: "none",
+
+  scrollTrigger: {
+    trigger: section,
+    start: "top top",
+    end: () => `+=${getDistance() * 0.20}`,
+    pin: section,
+    pinSpacing: true,
+    scrub: 0.5,
+    anticipatePin: 1,
+    invalidateOnRefresh: true
+  }
+
+  });
+
+  /* ATUALIZA OS CÁLCULOS */
+
+  requestAnimationFrame(() => {
+
+    ScrollTrigger.refresh();
+
+  });
+
+}
+
+/* =========================================
+   RECÁLCULO RESPONSIVO
+========================================= */
+
+window.addEventListener("resize", () => {
+
+  if (!contentUnlocked || !threeMomentsInitialized) return;
+
+  clearTimeout(resizeTimer);
+
+  resizeTimer = setTimeout(() => {
+
+    initializeThreeMoments();
+
+  }, 250);
+
+});
 
 /* =========================================
    INICIALIZAÇÃO

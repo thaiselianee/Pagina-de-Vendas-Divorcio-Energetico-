@@ -988,43 +988,33 @@ h2 i {
 
 
 
+
 /* =========================================
-   11. COMO FUNCIONA — RITUAL
+   03. COMO FUNCIONA — RITUAL
 ========================================= */
 
 .postvideo-ritual {
   position: relative;
   isolation: isolate;
-  padding: 75px 0 0;
+  padding: 65px 0 15px;
   overflow: hidden;
   background: #260812;
 }
 
-
-/* FUNDO DA SEÇÃO */
-
 .postvideo-ritual .section-background img {
-  object-position: center center;
+  object-position: 10% 30%;
 }
 
 .postvideo-ritual .section-overlay {
   background:
-    /* ESFUMAÇÃO DISCRETA NA PARTE INFERIOR */
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 88%,
-      rgba(38, 8, 18, .12) 92%,
-      rgba(65, 25, 34, .28) 95%,
-      rgba(248, 243, 237, .55) 98%,
-      #f8f3ed 100%
-    ),
+    /* ESCURECIMENTO E INTEGRAÇÃO DO FUNDO */
     linear-gradient(
       90deg,
       rgba(28, 5, 13, .88) 0%,
       rgba(35, 7, 16, .65) 52%,
       rgba(25, 4, 12, .78) 100%
     ),
+
     linear-gradient(
       180deg,
       rgba(22, 3, 9, .20),
@@ -1033,21 +1023,24 @@ h2 i {
 }
 
 
-/* =========================================
-   ORGANIZAÇÃO DA SEÇÃO
-========================================= */
-
 .ritual-grid {
   display: grid;
-  grid-template-columns: 1fr .9fr;
+  grid-template-columns: 1.10fr .95fr;
   align-items: center;
-  gap: 9%;
-  margin-bottom: 90px;
+  gap: 2%;
+  margin-bottom: 20px;
 }
+
 
 /* =========================================
    TEXTOS
 ========================================= */
+
+.ritual-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
 
 .ritual-copy h2 {
   margin: 17px 0 25px;
@@ -1055,7 +1048,7 @@ h2 i {
   font-size: clamp(43px, 5vw, 65px);
   line-height: 1;
   text-transform: none;
-  font-weight: 610 !important;
+  font-weight: 650 !important;
 }
 
 .ritual-copy h2 em {
@@ -1069,21 +1062,19 @@ h2 i {
   line-height: 1.85;
 }
 
-/* =========================================
-   OBSERVAÇÃO
-========================================= */
-
 .ritual-note {
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  margin-top: 28px;
+  margin-top: 35px;
   padding: 18px 20px;
   border-left: 2px solid #c79c66;
   background: rgba(255, 239, 218, .07);
+  backdrop-filter: blur(2px);
 }
 
 .ritual-note > span {
+  flex-shrink: 0;
   color: #e2bb80;
   font-size: 22px;
 }
@@ -1097,124 +1088,294 @@ h2 i {
   font-weight: 500;
 }
 
-/* =========================================
-   QUADRADO VISUAL — RITUAL
-========================================= */
+
+/* IMAGEM — TESOURA E LAÇO */
 
 .ritual-visual {
   position: relative;
-  min-height: 440px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  border: 2px solid rgba(220, 180, 119, .65);
-  border-radius: 12px;
-
-  background:
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(119, 52, 65, .25),
-      transparent 65%
-    ),
-    linear-gradient(
-      145deg,
-      #3a111f,
-      #200710
-    );
-
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, .2),
-    0 0 22px rgba(220, 180, 119, .08);
-}
-
-/* REMOVER ELEMENTOS ANTIGOS */
-
-.ritual-glow,
-.ritual-circle {
-  display: none;
-}
-
-/* =========================================
-   VÍDEO — NÓ SE DESFAZENDO
-========================================= */
-
-.ritual-video-frame {
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: -5%;
-  width: 110%;
-  max-width: none;
-  aspect-ratio: 612 / 252;
-  overflow: hidden;
-  border-radius: 10px;
-  background: transparent;
-  transform: translateY(-50%);
-}
-
-/* VÍDEO */
-
-.ritual-video {
-  display: block;
+  z-index: 1;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.05);
-  transform-origin: center;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  background: transparent;
-  filter: none;
-  mix-blend-mode: normal;
-
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, .25) 12%,
-    #000 35%,
-    #000 65%,
-    rgba(0, 0, 0, .25) 88%,
-    transparent 100%
-  );
-
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, .25) 12%,
-    #000 35%,
-    #000 65%,
-    rgba(0, 0, 0, .25) 88%,
-    transparent 100%
-  );
-}
-
-/* =========================================
-   LEGENDA
-========================================= */
-
-.ritual-caption {
-  position: absolute;
-  z-index: 4;
-  right: 15px;
-  bottom: 25px;
-  left: 15px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  color: #d5ad78;
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: .19em;
+  overflow: visible;
+  isolation: isolate;
 }
 
-.ritual-caption i {
-  font-size: 14px;
-  font-style: normal;
+/* IMAGEM */
+
+.ritual-image {
+  display: block;
+  width: 125%;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+
+  transform: translateX(2%);
+
+  filter:
+    drop-shadow(0 15px 35px rgba(0, 0, 0, .18));
+
+  /* ESFUMAÇÃO NAS BORDAS PARA INTEGRAR AO FUNDO */
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at center,
+      #000 48%,
+      rgba(0, 0, 0, .95) 63%,
+      rgba(0, 0, 0, .55) 78%,
+      transparent 100%
+    );
+
+  mask-image:
+    radial-gradient(
+      ellipse at center,
+      #000 48%,
+      rgba(0, 0, 0, .95) 63%,
+      rgba(0, 0, 0, .55) 78%,
+      transparent 100%
+    );
 }
+
+
+
+/* =========================================
+   12. TRÊS MOMENTOS — HORIZONTAL
+========================================= */
+
+#tres-momentos {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+
+  width: 100%;
+  height: 340px;
+  min-height: 340px;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: clip;
+
+  display: flex;
+  align-items: center;
+
+  background: #260812;
+}
+
+#tres-momentos::before {
+  content: none;
+}
+
+#tres-momentos .three-moments-track {
+  position: relative;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  gap: 28px;
+
+  width: max-content;
+  max-width: none;
+
+  padding: 0 5vw;
+  margin: 0;
+
+  box-sizing: border-box;
+  will-change: transform;
+}
+
+#tres-momentos .moment-card {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  flex: 0 0 clamp(340px, 42vw, 560px);
+  width: clamp(340px, 42vw, 560px);
+
+  height: 310px;
+  min-height: 310px;
+
+  padding: 35px 38px;
+
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.035),
+      transparent 55%
+    ),
+    #3b101b;
+
+  border: 1px solid rgba(200, 161, 106, 0.22);
+  border-radius: 3px;
+}
+
+#tres-momentos .moment-number {
+  color: rgba(200, 161, 106, 0.75);
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+
+#tres-momentos .moment-card-content {
+  position: relative;
+  z-index: 2;
+}
+
+#tres-momentos .moment-label {
+  display: block;
+  margin-bottom: 16px;
+  color: #c8a16a;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  line-height: 1.8;
+}
+
+#tres-momentos .moment-card-content h3 {
+    margin: 0 0 18px;
+    color: #f3e1ce;
+    font-family: emoji;
+    font-size: clamp(40px, 4vw, 58px);
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+#tres-momentos .moment-card-content p {
+  max-width: 380px;
+  margin: 0;
+  color: rgba(248, 243, 236, 0.72);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+#tres-momentos .moment-card-ornament {
+  position: absolute;
+  top: 25px;
+  right: 28px;
+  color: rgba(200, 161, 106, 0.5);
+  font-size: 24px;
+  pointer-events: none;
+}
+
+
+/* TABLET */
+
+@media (max-width: 1024px) {
+
+  #tres-momentos {
+    height: 370px;
+    min-height: 370px;
+  }
+
+  #tres-momentos .three-moments-track {
+    gap: 24px;
+    padding: 0 4vw;
+  }
+
+  #tres-momentos .moment-card {
+    flex: 0 0 72vw;
+    width: 72vw;
+
+    height: 340px;
+    min-height: 340px;
+
+    padding: 34px 30px;
+  }
+
+}
+
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+  #tres-momentos {
+    height: 350px;
+    min-height: 350px;
+  }
+
+  #tres-momentos .three-moments-track {
+    gap: 18px;
+    padding: 0 17px;
+  }
+
+  #tres-momentos .moment-card {
+    flex: 0 0 calc(100vw - 34px);
+    width: calc(100vw - 34px);
+
+    height: 320px;
+    min-height: 320px;
+
+    padding: 28px 23px;
+  }
+
+  #tres-momentos .moment-card-content h3 {
+    font-size: 36px;
+  }
+
+  #tres-momentos .moment-card-content p {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  #tres-momentos .moment-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  #tres-momentos .moment-number {
+    font-size: 12px;
+  }
+
+}
+
+
+/* CELULARES MENORES */
+
+@media (max-width: 400px) {
+
+  #tres-momentos {
+    height: 330px;
+    min-height: 330px;
+  }
+
+  #tres-momentos .three-moments-track {
+    gap: 14px;
+    padding: 0 14px;
+  }
+
+  #tres-momentos .moment-card {
+    flex: 0 0 calc(100vw - 28px);
+    width: calc(100vw - 28px);
+
+    height: 300px;
+    min-height: 300px;
+
+    padding: 24px 19px;
+  }
+
+  #tres-momentos .moment-card-content h3 {
+    font-size: 32px;
+  }
+
+  #tres-momentos .moment-card-content p {
+    font-size: 12px;
+  }
+
+}
+
+
 
 /* =========================================
    13. O QUE VOCÊ VAI RECEBER
@@ -2553,42 +2714,84 @@ background:
 }
 
 
+
+
 /* =========================================
    19. RODAPÉ
 ========================================= */
 
 .footer {
-  padding: 20px 24px 15px;
-  border-top: 1px solid rgba(214, 180, 119, .2);
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  width: 100%;
+  min-height: auto;
+  padding: 20px 20px 16px;
+  margin: 0;
+
+  box-sizing: border-box;
+
   background: #23060e;
+  border-top: 1px solid rgba(214, 180, 119, .25);
+
   text-align: center;
 }
 
-/* NOME */
-
 .footer-brand {
   display: inline-flex;
+  align-items: center;
   justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
   text-decoration: none;
+  line-height: 1.4;
 }
 
-.footer-brand .brand-name {
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: .12em;
+.footer-brand span {
+  display: inline-block;
+
   color: #e7ad5a;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .13em;
+  line-height: 1.4;
 }
-
-/* DIREITOS */
 
 .footer small {
   display: block;
-  margin-top: 12px;
-  color: rgba(245, 238, 229, .45);
-  font-size: 8px;
-  letter-spacing: .15em;
-  line-height: 1.8;
+
+  margin: 0;
+  padding: 0;
+
+  color: rgba(245, 238, 229, .70);
+
+  font-family: var(--sans), sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .09em;
+  line-height: 1.5;
+
+  text-align: center;
 }
+
+.footer .year {
+  display: inline;
+  margin: 0;
+
+  color: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+
+
+
 
 /* =========================================
    20. MINI PLAYER
@@ -2732,7 +2935,7 @@ background:
   opacity: .28;
   filter: blur(1.5px);
   transform: rotate(-48deg);
-  animation-duration: 13s;
+  animation-duration: 8s;
 }
 
 .petal-2 {
@@ -2743,7 +2946,7 @@ background:
   opacity: .48;
   filter: blur(.3px);
   transform: rotate(32deg);
-  animation-duration: 10s;
+  animation-duration: 8s;
   animation-delay: -3s;
 }
 
@@ -2755,7 +2958,7 @@ background:
   opacity: .30;
   filter: blur(2px);
   transform: rotate(45deg);
-  animation-duration: 14s;
+  animation-duration: 9s;
   animation-delay: -5s;
 }
 
@@ -2767,7 +2970,7 @@ background:
   opacity: .45;
   filter: blur(.5px);
   transform: rotate(-35deg);
-  animation-duration: 12s;
+  animation-duration: 10s;
   animation-delay: -2s;
 }
 
@@ -2857,23 +3060,6 @@ background:
   }
 }
 
-/* =========================================
-   24. TABLET E CELULAR
-========================================= */
-
-
-
-/* =========================================
-   25. TELAS MUITO PEQUENAS
-========================================= */
-
-
-
-/* =========================================
-   26. ACESSIBILIDADE
-========================================= */
-
-
 
 
 /* REMOVE A DIVISÃO ENTRE A VSL E A IDENTIFICAÇÃO */
@@ -2892,57 +3078,9 @@ background:
 }
 
 
-/* =========================================
-   CORREÇÃO DEFINITIVA — TRÊS MOMENTOS
-========================================= */
 
-/* Wrapper: sem fundo e sem espaçamento extra */
-.horizontal-story-wrap {
-    position: relative;
-    width: 100%;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
-    background: transparent !important;
-}
 
-/* Área horizontal: altura controlada pelo JS */
-.horizontal-story {
-    position: sticky;
-    top: 0;
 
-    display: flex;
-    align-items: center;
-    gap: 0;
-
-    width: 100%;
-    height: auto;
-    min-height: 0;
-
-    margin: 0;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-
-    overflow: hidden;
-    background: transparent !important;
-
-    isolation: isolate;
-    scrollbar-width: none;
-    scroll-behavior: auto;
-}
-
-.horizontal-story::-webkit-scrollbar {
-    display: none;
-}
-
-/* Preservar dimensões dos cards no desktop */
-.story-panel {
-    flex: 0 0 42vw;
-    width: 42vw;
-    height: min(62vh, 560px);
-    min-height: 390px;
-    align-self: center;
-}
 
 /* Não deixar a seção anterior criar uma faixa inferior */
 .postvideo-ritual {
@@ -3199,20 +3337,9 @@ background:
     padding: 45px 22px;
   }
 
-  /* RODAPÉ */
+ 
 
-  .footer {
-    padding: 22px 18px 20px;
-  }
 
-  .footer-brand .brand-name {
-    font-size: 15px;
-  }
-
-  .footer small {
-    font-size: 8px;
-    line-height: 1.9;
-  }
 }
 
 
@@ -3271,10 +3398,18 @@ background:
     margin-top: 12px;
   }
 
-  .hero h1 {
-    max-width: 450px;
-    font-size: clamp(34px, 8vw, 43px);
-    line-height: 1.03;
+    .hero h1 {
+    max-width: 100%;
+    padding: 0 10px;
+    margin: 0 auto;
+    font-size: clamp(30px, 8.8vw, 36px);
+    line-height: 1.05;
+  }
+
+  .hero h1 strong{
+    color: #e7a743;
+    font-size: 31px;
+    font-weight: 700;
   }
 
   .hero-subtitle {
@@ -3296,7 +3431,7 @@ background:
   .hero-cta {
     width: 95%;
     min-height: 65px;
-    margin: 22px auto 17px;
+    margin: 28px auto 17px;
     font-size: 17px;
   }
 
@@ -3358,15 +3493,15 @@ background:
   }
 
   .identification-copy h2 {
-    max-width: 440px;
+    max-width: 350px;
     margin: 12px auto 20px;
-    font-size: clamp(34px, 7.5vw, 41px);
+    font-size: 32px;
     line-height: 1.06;
     text-align: center;
   }
 
   .identification-text {
-    max-width: 430px;
+    max-width: 380px;
     margin: 0 auto;
     font-size: 13px;
     line-height: 1.8;
@@ -3390,82 +3525,104 @@ background:
     text-align: center;
   }
 
-  /* CONHEÇA O DIVÓRCIO ENERGÉTICO */
+ /* CONHEÇA O DIVÓRCIO ENERGÉTICO */
 
-  .postvideo-experience {
-    padding: 38px 0 45px;
-  }
+.postvideo-experience {
+  padding: 38px 0 45px;
+}
 
-  .experience-heading {
-    margin-bottom: 27px;
-    text-align: center;
-  }
+.experience-heading {
+  margin-bottom: 27px;
+  text-align: center;
+}
 
-  .postvideo-experience .postvideo-eyebrow {
-    font-size: 9px;
-    letter-spacing: .22em;
-  }
+.postvideo-experience .postvideo-eyebrow {
+  font-size: 9px;
+  letter-spacing: .22em;
+}
 
-  .experience-heading h2 {
-    margin: 12px auto 16px;
-    font-size: clamp(34px, 7.5vw, 43px);
-    line-height: 1;
-    text-align: center;
-  }
+.experience-heading h2 {
+  margin: 12px auto 16px;
+  font-size: 36px;
+  line-height: 1;
+  text-align: center;
+  font-weight: 700;
+}
 
-  .experience-heading p {
-    max-width: 420px;
-    font-size: 13px;
-    line-height: 1.7;
-    text-align: center;
-  }
+.experience-heading p {
+  max-width: 420px;
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: center;
+}
 
-  .experience-card {
-    padding: 20px 17px;
-    border-radius: 10px;
-  }
+.experience-card {
+  padding: 20px 17px;
+  border-radius: 10px;
+}
 
-  .experience-card-top,
-  .experience-card-footer {
-    font-size: 8px;
-    letter-spacing: .10em;
-  }
+.experience-card-top,
+.experience-card-footer {
+  font-size: 8px;
+  letter-spacing: .10em;
+}
 
-  .experience-card-main {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 22px 0;
-    text-align: center;
-  }
+.experience-card-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 22px 0;
+  text-align: center;
+}
 
-  .experience-number {
-    font-size: 82px;
-    line-height: 1;
-  }
+.experience-number {
+  font-size: 82px;
+  line-height: 1;
+}
 
-  .experience-card-copy {
-    padding-left: 0;
-    text-align: center;
-  }
+.experience-card-copy {
+  padding-left: 0;
+  border-left: none;
+  text-align: center;
+}
 
-  .experience-card-copy h3 {
-    margin-top: 5px;
-    font-size: 23px;
-    line-height: 1.15;
-  }
+.experience-card-copy h3 {
+  margin-top: 5px;
+  font-size: 23px;
+  line-height: 1.15;
+}
 
-  .experience-card-copy > span {
-    font-size: 8px;
-  }
+.experience-card-copy > span {
+  font-size: 8px;
+}
 
-  .experience-card-top {
-    padding-bottom: 13px;
-  }
+.experience-card-top {
+  padding-bottom: 13px;
+}
 
-  .experience-card-footer {
-    padding-top: 13px;
-  }
+.experience-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 16px;
+  padding-top: 13px;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: .10em;
+}
+
+/* POSICIONAMENTO DAS FRASES DO RODAPÉ */
+
+.experience-card-footer > * {
+  text-align: center;
+  display: none;
+}
+
+.experience-card-footer > *:last-child {
+  flex-basis: 100%;
+  text-align: center;
+}
 
   /* COMO FUNCIONA */
 
@@ -3489,13 +3646,13 @@ background:
 
   .ritual-copy h2 {
     margin: 12px auto 18px;
-    font-size: clamp(34px, 7.5vw, 42px);
+    font-size: 38px;
     line-height: 1.05;
     text-align: center;
   }
 
   .ritual-copy > p {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.75;
     text-align: center;
   }
@@ -3513,10 +3670,12 @@ background:
     display: none !important;
   }
 
+
+
   /* O QUE VOCÊ VAI RECEBER */
 
   .receive-section {
-    padding: 40px 0 40px;
+    padding: 40px 15px 40px;
   }
 
   .receive-heading {
@@ -3531,12 +3690,13 @@ background:
   }
 
   .receive-heading h2 {
-    font-size: clamp(34px, 7.5vw, 42px);
+    font-size: 37px;
     line-height: 1.05;
+    font-weight: 700;
   }
 
   .receive-heading > p:last-of-type {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.7;
   }
 
@@ -3576,12 +3736,12 @@ background:
 
   .receive-item h3 {
     margin-bottom: 9px;
-    font-size: 24px;
+    font-size: 26px;
     line-height: 1.2;
   }
 
   .receive-item p {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.75;
   }
 
@@ -3591,7 +3751,7 @@ background:
   }
 
   .receive-footer p {
-    font-size: 8px;
+    font-size: 10px;
     line-height: 1.8;
     letter-spacing: .10em;
   }
@@ -3599,6 +3759,7 @@ background:
   .receive-footer-line {
     max-width: 30px;
   }
+
 
   /* OFERTA */
 
@@ -3615,7 +3776,7 @@ background:
   }
 
   .offer-header p:last-child {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .offer-card {
@@ -3666,7 +3827,7 @@ background:
   }
 
   .bonus-section .section-heading h2 {
-    font-size: clamp(32px, 7vw, 40px);
+    font-size: 36px;
   }
 
   .bonus-grid {
@@ -3703,7 +3864,7 @@ background:
   }
 
   .bonus-card .bonus-description {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.65;
   }
 
@@ -3749,6 +3910,7 @@ background:
     font-size: clamp(30px, 6.5vw, 36px);
     line-height: 1.12;
     text-wrap: balance;
+    display: none;
   }
 
   .guarantee-content .guarantee-description {
@@ -3773,9 +3935,9 @@ background:
 
   .closing-section h2 {
     width: 100%;
-    max-width: 440px;
+    max-width: 600px;
     margin: 15px auto 18px;
-    font-size: clamp(25px, 5.5vw, 30px);
+    font-size: 30px;
     line-height: 1.2;
     text-align: center;
   }
@@ -3786,15 +3948,19 @@ background:
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.7;
   }
 
   .closing-section h3 {
     max-width: 420px;
     margin-bottom: 25px;
-    font-size: 19px;
+    font-size: 20px;
     line-height: 1.25;
+  }
+
+  .botton-gold{
+
   }
 
   /* FAQ */
@@ -3808,7 +3974,8 @@ background:
   }
 
   .faq-section .section-heading h2 {
-    font-size: 32px;
+    font-size: 36px;
+    max-width: 390px;
   }
 
   .faq-section .section-heading .eyebrow {
@@ -3817,51 +3984,34 @@ background:
 
   .faq-list summary {
     padding: 18px 35px 18px 4px;
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.6;
   }
 
   .faq-list details p {
     padding-bottom: 18px;
-    font-size: 12px;
+    font-size: 14px;
   }
+
 
   /* RODAPÉ */
 
   .footer {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    padding: 20px 15px 18px;
-    text-align: center;
+    gap: 6px;
+    padding: 17px 14px 15px;
   }
 
-  .footer-brand {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .footer-brand .brand-name {
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+  .footer-brand span {
     font-size: 13px;
-    letter-spacing: .10em;
+    letter-spacing: .11em;
   }
 
   .footer small {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin-top: 12px;
     font-size: 8px;
-    line-height: 1.8;
-    letter-spacing: .08em;
-    overflow-wrap: anywhere;
+    letter-spacing: .06em;
+    line-height: 1.6;
   }
+  
 
   /* MINI PLAYER */
 
@@ -4208,27 +4358,24 @@ background:
     font-size: 11px;
   }
 
-  /* RODAPÉ */
+    /* RODAPÉ */
+    .footer {
+      gap: 5px;
+      padding: 15px 10px 13px;
+    }
 
-  .footer {
-    padding: 18px 12px 16px;
-  }
+    .footer-brand span {
+      font-size: 12px;
+      letter-spacing: .09em;
+    }
 
-  .footer-brand {
-    display: flex !important;
-    justify-content: center;
-  }
+    .footer small {
+      font-size: 7px;
+      letter-spacing: .04em;
+      line-height: 1.6;
+    }
 
-  .footer-brand .brand-name {
-    display: inline-block !important;
-    font-size: 11px;
-  }
 
-  .footer small {
-    display: block !important;
-    font-size: 7px;
-    letter-spacing: .05em;
-  }
 
   /* MINI PLAYER */
 
@@ -4371,4 +4518,58 @@ background:
     translate: none;
     transition: none;
   }
+}
+
+/* =========================================
+   CORREÇÃO DEFINITIVA DO RODAPÉ
+========================================= */
+
+#lockedContent .footer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+
+    width: 100% !important;
+    min-height: 110px !important;
+    box-sizing: border-box !important;
+
+    padding: 24px 20px !important;
+    margin: 0 !important;
+
+    background: #19070c !important;
+    color: #f8f3ec !important;
+
+    position: relative !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    z-index: 2 !important;
+}
+
+#lockedContent .footer .footer-brand,
+#lockedContent .footer small {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+#lockedContent .footer .footer-brand {
+    color: #f8f3ec !important;
+    font-family: "Cormorant Garamond", serif !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    letter-spacing: 3px !important;
+    text-decoration: none !important;
+}
+
+#lockedContent .footer small {
+    color: rgba(248, 243, 236, 0.65) !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 400 !important;
+    letter-spacing: 1px !important;
+    text-align: center !important;
 }
