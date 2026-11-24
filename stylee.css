@@ -714,7 +714,6 @@ h2 i {
 
 .highlight-ornament {
   display: block;
-  margin-bottom: 20px;
   color: #e6c18b;
   font-family: var(--serif);
   font-size: 35px;
@@ -3409,9 +3408,17 @@ background:
 
   .hero h1 strong{
     color: #e7a743;
-    font-size: 31px;
+    font-size: 29px;
     font-weight: 700;
+    
   }
+
+  .hero h1 strong {
+        display: block;
+        white-space: nowrap;
+        letter-spacing: -1px;
+  }
+
 
   .hero-subtitle {
     max-width: 420px;
@@ -3504,9 +3511,12 @@ background:
   .identification-text {
     max-width: 380px;
     margin: 0 auto;
-    font-size: 13px;
     line-height: 1.8;
     text-align: center;
+  }
+  
+  .identification-text p {
+    font-size: 17px;
   }
 
   .identification-highlight {
@@ -3522,7 +3532,6 @@ background:
   .identification-closing {
     max-width: 430px;
     margin: 0 auto;
-    font-size: 18px;
     text-align: center;
   }
 
