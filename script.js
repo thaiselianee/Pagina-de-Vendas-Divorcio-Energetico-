@@ -217,6 +217,7 @@ function updateVideoState() {
    YOUTUBE - PLAYER PRONTO
 ========================================= */
 
+
 function onYouTubePlayerReady(event) {
 
   playerReady = true;
@@ -224,11 +225,18 @@ function onYouTubePlayerReady(event) {
   lastAllowedTime = 0;
   lastPlaybackTime = 0;
 
+  // INICIA O VÍDEO AUTOMATICAMENTE SEM SOM
+
+  player.mute();
+
+  player.playVideo();
+
   updatePlayButtons();
 
   console.log("Player do YouTube carregado com sucesso.");
 
 }
+
 
 /* =========================================
    YOUTUBE - MUDANÇA DE ESTADO
